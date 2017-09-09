@@ -1,0 +1,18 @@
+urlparse.urlparse(urlstring[, scheme[, allow_fragments]])
+    将urlstring解析成6个部分，它从urlstring中取得URL，并返回元组 (scheme, netloc, path, parameters, query, fragment)
+
+urlparse.urlunparse(parts)
+
+        从一个元组构建一个url，元组类似urlparse返回的，它接收元组(scheme, netloc, path, parameters, query, fragment)后，会重新组成一个具有正确格式的URL，以便供Python的其他HTML解析模块使用。 
+
+urlparse.urlsplit(urlstring[, scheme[, allow_fragments]])
+
+        主要是分析urlstring，返回一个包含5个字符串项目的元组：协议、位置、路径、查询、片段。
+
+urlparse.urlunsplit(parts)
+
+        urlunsplit使用urlsplit()返回的值组合成一个url
+
+urlparse.urljoin(base, url[, allow_fragments])
+
+        urljoin主要是拼接URL，它以base作为其基地址，然后与url中的相对地址相结合组成一个绝对URL地址。

@@ -1,0 +1,36 @@
+
+    
+shutil.copyfileobj(fsrc, fdst[, length])
+
+    将类文件对象fsrc 的内容复制到类文件对象fdst。
+
+shutil.copyfile(src, dst)
+
+    复制文件src的内容（不包含元数据）到文件dst。
+
+shutil.copymode(src, dst)
+
+    将权限位从src复制到dst。文件内容、 所有者和组不会受到影响。src和dst是作为字符串给出的路径名称。
+
+shutil.copystat(src, dst)
+
+    将权限位、 最后存取时间、 最后修改时间和标志从src复制到dst。
+
+shutil.copy(src, dst)
+
+    将文件src复制到文件或目录dst。
+
+shutil.copy2(src, dst)
+
+    类似于shutil.copy()，但元数据也复制 — 事实上，它只是shutil.copy()加上copystat()。这是类似于Unix 的命令cp -p。
+
+shutil.copytree(src, dst, symlinks=False, ignore=None)
+
+    以递归方式复制以src为根的整个目录树。目标目录dst必须不存在；它和父目录将一起创建。复制权限和目录使用copystat()的，单个文件的复制使用shutil.copy2()。
+
+
+shutil.rmtree(path[, ignore_errors[, onerror]])
+
+    删除整个目录树；path必须指向一个目录（不可以是指向目录的软链接）。
+    如果ignore_errors为真，将忽略删除失败产生的错误；如果为假或被省略，这些错误将通过调用onerror指示的处理程序处理，或者如果省略onerror，它们将会引发异常。
+
