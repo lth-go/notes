@@ -31,10 +31,6 @@ gE                                       向后至第 N 个空白隔开的字串
 [{                                       向后至第 N 个未闭合的 '{'
 ])                                       向前至第 N 个未闭合的 ')'
 ]}                                       向前至第 N 个未闭合的 '}'
-[#                                       向后至第 N 个未闭合的 "#if" 或 "#else"
-]#                                       向前至第 N 个未闭合的 "#else" 或 "#endif"
-[*                                       向后至第 N 个注释的开始 "/*"
-]*                                       向前至第 N 个注释的结束 "*/"
 -------------------------------------------------------------------
 模式查找
 
@@ -106,30 +102,6 @@ CTRL-I                                   跳转到跳转表中第 N 个较晚的
 %                                        找到本行中下一个括号、方括号、注释或 "#if"/"#else"/"#endif" 并移动至与其对称的位置
 
 ------------------------------------------------------------------------------
-使用标签
-
-:ta[g][!] {tag}                          跳转到标签 {tag}
-:[count]ta[g][!]                         跳转到标签列表里第 [count] 个较新的标签
-CTRL-]                                   跳转到光标下的标签，除非文件被改动
-:ts[elect][!] [tag]                      列出匹配的标签并选择其中一个跳转
-:tj[ump][!] [tag]                        跳转到标签 [tag]，当有多个匹配时从列表中选择
-:lt[ag][!] [tag]                         跳转到标签 [tag] 并把匹配的标签加到位置列表
-
-:tags                                    显示标签列表
-CTRL-T                                跳转到标签列表中第 N 个较早的标签
-:[count]po[p][!]                         跳转到标签列表中第 [count] 个较早的标签
-:[count]tn[ext][!]                       跳转到向下第 [count] 个匹配的标签
-:[count]tp[revious][!]                   跳转到向上第 [count] 个匹配的标签
-:[count]tr[ewind][!]                     跳转到第 [count] 个匹配的标签
-:tl[ast][!]                              跳转到上次匹配的标签
-
-:pt[ag] {tag}                            打开一个显示 {tag} 标签的预览窗口
-CTRL-W }                                 同 CTRL-] 但在预览窗口显示标签
-:pts[elect]                              同 ":tselect" 但在预览窗口显示标签
-:ptj[ump]                                同 ":tjump" 但在预览窗口显示标签
-:pc[lose]                                关闭标签预览窗口
-CTRL-W z                                 关闭标签预览窗口
-------------------------------------------------------------------------------
 屏幕滚动
 
 CTRL-E                                   窗口下滚 N 行              (Extra)
@@ -170,8 +142,6 @@ CTRL-O {command}                         执行命令 {command} 并回到插入�
 
 移动:
 光标键                                   左/右/上/下 移动光标
-shift-left/right                         左/右 移动一个单词
-shift-up/down                            后/前 移动一个满屏
 <End>                                    光标至本行的末字符之后
 <Home>                                   光标至本行的首字符之上
 ------------------------------------------------------------------------------
@@ -197,11 +167,6 @@ CTRL-T                                   在当前行首插入一个移位宽度
 CTRL-D                                   从当前行首删除一个移位宽度的缩进
 0 CTRL-D                                 删除当前行的所有缩进
 ^ CTRL-D                                 删除当前行的所有缩进，恢复下一行的缩进
-------------------------------------------------------------------------------
-特殊插入
-
-:r [file]                                将文件 [file] 的内容插入到光标之下
-:r! {command}                            将命令 {command}  的标准输出插入到光标之下
 --------------------------------------------------------------------
 删除文本
 
@@ -211,6 +176,7 @@ d{motion}                                删除动作 {motion} 覆盖的文本
 {visual}d                                删除高亮的文本
 dd                                       删除 N 行
 D                                        删除至行尾
+
 J                                        连接 N - 1 行
 {visual}J                                连接高亮的行
 gJ                                       同 "J"，但不插入空格
@@ -257,8 +223,6 @@ s                                        修改 N 个字符
 g~{motion}                               将动作 {motion} 覆盖的文本翻转大小写
 gu{motion}                               将动作 {motion} 覆盖的文本改为小写
 gU{motion}                               将动作 {motion} 覆盖的文本改为大写
-{visual}g?                               对高亮的文本做 rot13 编码
-g?{motion}                               对动作 {motion} 覆盖的文本做 rot13 编码
 
 CTRL-A                                   将光标之上或之后的数值增加 N
 CTRL-X                                   将光标之上或之后的数值减少 N
@@ -267,10 +231,6 @@ CTRL-X                                   将光标之上或之后的数值减少
 <<                                       将 N 行向左移动一个移位宽度
 >{motion}                                将动作 {motion} 覆盖的所有行向右移动一个移位宽度
 >>                                       将 N 行向右移动一个移位宽度
-gq{motion}                               将动作 {motion} 覆盖的所有行进行排版到 'textwidth' 宽
-:[range]ce[nter] [width]                 将范围 [range] 包括的行居中对齐
-:[range]le[ft] [indent]                  将范围 [range] 中的行靠左对齐 (使用 [indent])
-:[range]ri[ght] [width]                  将范围 [range] 中的行靠右对齐
 --------------------------------------------------------------------
 复杂改动
 
@@ -278,13 +238,7 @@ gq{motion}                               将动作 {motion} 覆盖的所有行�
 !!{command}<CR>                          将 N 行用命令 {command} 过滤
 {visual}!{command}<CR>                   将高亮的行用命令 {command} 过滤
 :[range]! {command}<CR>                  将范围 [range] 包括的行用命令 {command} 过滤
-={motion}                                将动作覆盖的行用 'equalprg' 过滤
-==                                       将 N 行用 'equalprg' 过滤
-{visual}=                                将高亮的行用 'equalprg' 过滤
 :[range]s/{pattern}/{string}/[g][c]      以 {string} 替代范围 [range] 包括的行中的 {pattern}； 与 [g] 共用，替代所有的出现的 {pattern}； 与 [c] 共用，确认每一次替代
-:[range]s [g][c]                         以新的范围和选项重复上一次的 ":s" 命令
-&                                        不带选项在当前行上重复上一次的 ":s" 命令
-:[range]ret[ab][!] [tabstop]             置 'tabstop' 为新值并依据此值调整空白字符
 ------------------------------------------------------------------------------
 可视模式
 
@@ -324,15 +278,6 @@ i`                                       选择 "内含反引号字符串"
 重复命令
 
 .                                        重复最近一次改动 (将计数改为 N)
-q{a-z}                                   记录键入的字符，存入寄存器 {a-z}
-q{A-Z}                                   记录键入的字符，添加进寄存器 {a-z}
-q                                        终止记录
-@{a-z}                                   执行寄存器 {a-z} 的内容 (N 次)
-@@                                       重复上次的 @{a-z} 操作 (N 次)
-:@{a-z}                                  将寄存器 {a-z} 的内容当作 Ex 命令来执行
-:@@                                      重复上次的 :@{a-z} 操作
-:so[urce] {file}                         从文件 {file} 读入 Ex 命令
-:so[urce]! {file}                        从文件 {file} 读入 Vim 命令
 ------------------------------------------------------------------------------
 撤销/重做命令
 
@@ -340,48 +285,12 @@ u                                        撤销最近的 N 此改动
 CTRL-R                                   重做最近的 N 个被撤销的改动
 U                                        恢复最近被改动的行
 ------------------------------------------------------------------------------
-外部命令
-
-:sh[ell]                                 开启一个 shell
-:!{command}                              通过一个 shell 执行命令 {command}
-------------------------------------------------------------------------------
-Quickfix 命令
-
-:cc [nr]                                 显示第 [nr] 个错误 (缺省为同一错误)
-:cn                                      显示下一个错误
-:cp                                      显示上一个错误
-:cl                                      列出所有错误
-:cf                                      从文件 'errorfile' 读入错误
-:cgetb                                   类似于 :cbuffer 但不跳转到第一个错误
-:cg                                      类似于 :cfile 但不跳转到第一个错误
-:cgete                                   类似于 :cexpr 但不跳转到第一个错误
-:caddf                                   从错误文件加入错误到当前 quickfix 列表
-:cad                                     从表达式计算结果加入错误到当前 quickfix 列表
-:cb                                      从缓冲区文本读入错误
-:cex                                     从表达式计算结果读入错误
-:cq                                      退出不保存并返回错误代码 (至编译器)
-:make [args]                             启动 make，读入错误，并跳转到第一个错误
-:gr[ep] [args]                           执行 'grepprg' 程序以找出匹配并跳转到首个匹配
---------------------------------------------------------------
 其他移动
 
-CTRL-L                                   清除并重画屏幕
 CTRL-G                                   显示当前文件名 (包括路径) 和光标位置
-ga                                       以十进制、十六进制和八进制显示当前光标下的字符 的 ASCII 值
-g8                                       对 utf-8 编码: 显示光标所在字符的十六进制字节 序列
-g CTRL-G                                 显示当前光标的列、行、以及字符位置
 CTRL-C                                   在查找中: 中断查找
-CTRL-Break                               MS-DOS: 在查找中: 中断查找
-<Del>                                    当输入一个计数时: 删除前一个输入字符
-:ve[rsion]                               显示版本信息
-:mode N                                  MS-DOS: 置屏幕模式为 N (数值、C80、C4350 等)
-:norm[al][!] {commands}                  执行普通模式命令
-Q                                        切换至 "Ex" 模式
 
-:redir >{file}                           重定向消息至文件 {file}
 :silent[!] {command}                     安静地执行 {command} 命令
-:confirm {command}                       退出、写入等有未保存的改动或文件只读时 询问
-:browse {command}                        使用文件选择对话框打开/读入/写入文件
 --------------------------------------------------------------
 命令行编辑
 
@@ -393,7 +302,6 @@ CTRL-K {char1} {char2}                   键入二合字母 (参见 |Q_di|)
 CTRL-R {0-9a-z"%#:-=}                    插入指定寄存器的内容
 
 <Left>/<Right>                           光标左移/右移
-<S-Left>/<S-Right>                       光标左移/右移一个单词
 CTRL-B/CTRL-E                            光标移动至命令行行首/行尾
 
 <BS>                                     删除光标前的字符
@@ -402,15 +310,11 @@ CTRL-W                                   删除光标前的单词
 CTRL-U                                   删除所有字符
 
 <Up>/<Down>                              搜索以当前命令行开始的较早/较晚的命令
-<S-Up>/<S-Down>                          从命令行历史中回忆较早/较晚的命令
 :his[tory]                               显示命令行历史
 
 上下文关联的命令行补全:
 
 'wildchar'                               根据光标前的命令行补全；如果有多个匹配，响铃并 显示第一个；继续 'wildchar' 将显示下一个匹配
-CTRL-D                                   列出匹配光标前的模式的可能的匹配
-CTRL-A                                   插入匹配光标前的模式的所有的匹配
-CTRL-L                                   插入所有匹配当前模式的名字的最长的共同部分
 CTRL-N                                   在 'wildchar' 之后存在多个匹配时: 至下一匹配
 CTRL-P                                   在 'wildchar' 之后存在多个匹配时: 至上一匹配
 --------------------------------------------------------------
@@ -456,85 +360,19 @@ $                                        文件的最后一行
 :e                                       扩展名
 :s/{pat}/{repl}/                         以 {repl} 替换 {pat}
 --------------------------------------------------------------------
-启动 Vim
-
-vim [options]                            启动 vim 并开启一个空白缓冲区
-vim [options] {file}                     启动并编辑一个或多个文件
-vim [options] -                          从标准输入读入文件
-vim [options] -t {tag}                   编辑与标签 {tag} 关联的文件
-vim [options] -q [fname]                 以 QuickFix 模式开始编辑并显示首个错误
-
-最有用的 Vim 参数
-
-+[num]                                   置光标于第 [num] 行 (缺省: 末行)
-+{command}                               载入文件后执行命令 {command}
-+/{pat} {file}                           置光标于第一次出现 {pat} 的地方
--v                                       Vi 模式，以普通模式启动 ex
--e                                       Ex 模式，以 Ex 模式启动 vim
--R                                       只读模式，隐含 -n
--m                                       禁止修改 (复位 'write' 选项)
--d                                       diff 模式
--b                                       二进制模式
--l                                       lisp 模式
--V                                       详细，给出更多信息
--r                                       给出交换文件列表
--r {file}                                恢复中断的编辑
--n                                       不创建交换文件
--o [num]                                 打开 [num] 个窗口 (缺省: 每个文件一个窗口)
-
--s {scriptin}                            先从文件 {scriptin} 读入命令
--w {scriptout}                           把键入的字符写进文件 {scriptout} (添加)
--W {scriptout}                           把键入的字符写进文件 {scriptout} (覆盖)
--T {terminal}                            设置终端名
--d {device}                              Amiga: 打开 {device} 作为控制台使用
--u {vimrc}                               从文件 {vimrc} 而非其它文件读入初始化命令
--i {viminfo}                             从文件 {viminfo} 而不是其它文件读入信息
---help                                   显示参数列表并退出
---version                                显示版本信息并退出
-------------------------------------------------------------------------------
 文件编辑
 
 无 !: 若当前缓冲区已被改动则失败
 有 !: 放弃任何对当前缓冲区的改动
 :e[dit][!] {file}                        编辑 {file}
-:e[dit][!]                               重新载入当前文件
-:ene[w][!]                               编辑一个无名的新缓冲区
-:fin[d][!] {file}                        在 'path' 当中查找文件 {file} 并编辑之
 
-CTRL-^                                   编辑第 N 个轮换文件名 (同 ":e #N")
-gf                                       编辑光标下的文件名对应的文件 (goto file)
 :pwd                                     显示当前目录名
 :cd [path]                               切换当前目录到 [path]
-:cd -                                    回到上一次当前目录
 :f[ile]                                  显示当前文件名及光标位置
-:f[ile] {name}                           置当前文件名为 {name}
-:files                                   显示所有的轮换文件名
-------------------------------------------------------------------------------
-使用参数列表
-
-:ar[gs]                                  显示参数列表，当前文件显示在 "[]" 中
-:all                                     为参数列表中的每个文件打开一个窗口
-:wn[ext][!]                              写入当前文件并编辑下一个文件
-:wn[ext][!] {file}                       写到 {file} 并编辑下一个文件，除非文件 {file} 已经存在。使用 !，覆盖已存在的文件
-:wN[ext][!] [file]                       写入当前文件并编辑前一个文件
-
-在当前窗口         新建窗口
-:argu[ment]        :sar[gument]          编辑第 N 个文件
-:n[ext]            :sn[ext]              编辑下一个文件
-:n[ext] {arglist}  :sn[ext] {arglist}    定义新的文件列表并编辑其中的第一个
-:N[ext]            :sN[ext]              编辑前一个文件
-:fir[st]           :sfir[st]             编辑第一个文件
-:la[st]            :sla[st]              编辑最后一个文件
 ------------------------------------------------------------------------------
 写入和退出
 
 :[range]w[rite][!]                       写入当前文件
-:[range]w[rite] {file}                   写入至文件 {file}，除非其已经存在
-:[range]w[rite]! {file}                  写入至文件 {file}。覆盖已存在的文件
-:[range]w[rite][!] >>                    添加至当前文件
-:[range]w[rite][!] >> {file}             添加至文件 {file}
-:[range]w[rite] !{cmd}                   执行命令 {cmd}，以 [range] 限定的行作为标准输入
-:[range]up[date][!]                      如果当前文件被改动则写入
 :wa[ll][!]                               写入所有被改动的缓冲区
 
 :q[uit]                                  退出当前缓冲区，除非已经做了改动。如果没有其它
@@ -554,80 +392,34 @@ ZQ                                       同 ":q!"
 ------------------------------------------------------------------------------
 自动命令
 
-启动时读入寄存器、标记、历史记录，退出时存储这些信息。
-
-:rv[iminfo] [file]                       从文件 [file] 读入 viminfo 信息
-:rv[iminfo]! [file]                      同上，但覆盖已存在的信息
-:wv[iminfo] [file]                       向文件 [file] 中加入 viminfo 信息
-:wv[iminfo]! [file]                      向文件 [file] 中写入 viminfo 信息
-
-当编辑一个文件时自动设定的选项
-
-vim:{set-arg}:                           置于文件的前面或后面数行 (参见 'ml' 选项)，{set-arg} 为传递给 ":set" 命令的参数
-
 特定事件发生时自动执行命令。
 
 :au                                      列出所有自动命令
 :au {event}                              列出针对事件 {event} 的所有自动命令
 :au {event} {pat}                        列出针对事件 {event} 并匹配 {pat} 的所有自动命令
 :au {event} {pat} {cmd}                  加入针对事件 {event} 及匹配 {pat} 的新自动命令
-:au!                                     清除所有自动命令
-:au! {event}                             清除所有针对事件 {event} 的自动命令
-:au! * {pat}                             清除所有匹配 {pat} 的自动命令
-:au! {event} {pat}                       清除所有针对事件 {event} 及匹配 {pat} 的自动命令
-:au! {event} {pat} {cmd}                 清除所有针对事件 {event} 及匹配{pat} 的自动命令并输入新的
 --------------------------------------------------------------
 多窗口命令
 
-CTRL-W s  或  :split                     将窗口分割成两部分          (split)
 :split {file}                            分隔窗口并在其中一个编辑 {file}
 :vsplit {file}                           同上，但垂直分割
-:vertical {cmd}                          使命令 {cmd} 垂直分割
-:sf[ind] {file}                          分割窗口，从 {path} 中找到文件 {file} 并编辑之
-CTRL-W ]                                 分割窗口并跳转到光标下的标签
-CTRL-W f                                 分割窗口并编辑光标下的文件名 (file)
-CTRL-W ^                                 分割窗口并编辑轮换文件
-CTRL-W n  或  :new                       创建新空白窗口              (new)
-CTRL-W q  或  :q[uit]                    退出编辑并关闭窗口          (quit)
-CTRL-W c  或  :cl[ose]                   隐藏当前缓冲区并关闭窗口    (close)
-CTRL-W o  或  :on[ly]                    使当前窗口成为唯一窗口      (only)
 
 CTRL-W j                                 跳转到下方窗口
 CTRL-W k                                 跳转到上方窗口
-CTRL-W CTRL-W                            移动光标至下方窗口 (折转)   (Wrap)
-CTRL-W W                                 移动光标至上方窗口 (折转)   (wrap)
-CTRL-W t                                 跳转到顶端窗口              (top)
-CTRL-W b                                 跳转到底端窗口              (bottom)
-CTRL-W p                                 跳转到上一次激活的窗口      (previous)
-
-CTRL-W r                                 向下旋转窗口                (rotate)
-CTRL-W R                                 向上旋转窗口                (Rotate)
-CTRL-W x                                 将当前窗口与下一个窗口对调  (eXchange)
-
-CTRL-W =                                 使所有窗口等高
-CTRL-W -                                 减少当前窗口高度
-CTRL-W +                                 增加当前窗口高度
-CTRL-W _                                 设置当前窗口高度 (缺省: 很高)
+CTRL-W l                                 跳转到右边窗口
+CTRL-W h                                 跳转到左边窗口
 --------------------------------------------------------------
 缓冲区列表命令
 
 :ls                                      列出所有已知的缓冲区和文件名
 
-:ball                                    编辑所有的参数/缓冲区
-:unhide                                  编辑所有载入的缓冲区
-
-:badd {fname}                            加入文件名 {fname} 到列表中
 :bunload[!] [N]                          从内存中卸载缓冲区 [N]
 :bdelete[!] [N]                          从内存中卸载缓冲区 [N]  并从列表中删除
 
 当前窗口内         新窗口内
 :[N]buffer [N]     :[N]sbuffer [N]       至参数/缓冲区 N
 :[N]bnext [N]      :[N]sbnext [N]        至往后第 N 个参数/缓冲区
-:[N]bNext [N]      :[N]sbNext [N]        至往前第 N 个参数/缓冲区
 :[N]bprevious [N]  :[N]sbprevious [N]    至往前第 N 个参数/缓冲区
-:bfirst            :sbfirst              至第一个参数/缓冲区
-:blast             :sblast               至最后一个参数/缓冲区
-:[N]bmod [N]       :[N]sbmod [N]         至第 N 个改动过的缓冲区
 --------------------------------------------------------------
 语法高亮
 
@@ -647,89 +439,37 @@ CTRL-W _                                 设置当前窗口高度 (缺省: 很�
 :filetype on                             开启文件类型检测，不启用语法高亮
 :filetype plugin indent on               开启文件类型检测，包括自动缩进及设置
 ------------------------------------------------------------------------------
-折叠
-
-set foldmethod=manual                    手动折叠
-set foldmethod=indent                    按照缩进折叠
-set foldmethod=expr                      按照表达式 'foldexpr' 折叠
-set foldmethod=syntax                    按照语法区域折叠
-set foldmethod=marker                    按照标志 'foldmarker' 折叠
-
-zf{motion}                               操作符: 手动定义一个折叠    (fold)
-:{range}fold                             将范围 {range} 包括的行定义为一个折叠
-zd                                       删除光标下的一个折叠        (delete)
-zD                                       删除光标下的所有折叠        (Delete)
-
-zo                                       打开光标下的折叠            (open)
-zO                                       打开光标下的所有折叠        (Open)
-zc                                       关闭光标下的一个折叠        (close)
-zC                                       关闭光标下的所有折叠        (Close)
-
-zm                                       折起更多: 减少 'foldlevel'  (more)
-zM                                       关闭所有折叠: 置 'foldlevel' 为 0
-zr                                       减少折叠: 增加 'foldlevel'  (reduce)
-zR                                       打开所有折叠: 置 'foldlevel' 为最大
-
-zn                                       不折叠: 复位 'foldenable'   (none)
-zN                                       正常折叠: 置位 'foldenable' (Normal)
-zi                                       反转 'foldenable'           (invert)
-------------------------------------------------------------------------------
 键盘映射
 
 :ma[p] {lhs} {rhs}                       在普通及可视模式下将 {rhs} 映射为 {lhs}
 :ma[p]! {lhs} {rhs}                      在插入及命令行模式下将 {rhs} 映射为 {lhs}
 :no[remap][!] {lhs} {rhs}                同 ":map"，但不对 {rhs} 重新映射
-:unm[ap] {lhs}                           清除普通及可视模式下 {lhs} 的映射
-:unm[ap]! {lhs}                          清除插入及命令行模式下 {lhs} 的映射
+
 :ma[p] [lhs]                             列出普通及可视模式下以 [lhs] 开始的映射
 :ma[p]! [lhs]                            列出插入及命令行模式下以 [lhs] 开始的映射
+
 :cmap/:cunmap/:cnoremap                  同 ":map!"/":unmap!"/":noremap!" 但仅作用于命令行模式 (Command-line)
 :imap/:iunmap/:inoremap                  同 ":map!"/":unmap!"/":noremap!" 但仅作用于插入模式   (Insert)
 :nmap/:nunmap/:nnoremap                  同 ":map"/":unmap"/":noremap"， 但仅作用于普通模式   (Normal)
 :vmap/:vunmap/:vnoremap                  同 ":map"/":unmap"/":noremap"， 但仅作用于可视模式   (Visual)
 :omap/:ounmap/:onoremap                  同 ":map"/":unmap"/":noremap" 但仅作用于操作符等待模式
-(Operator-pending)
-:mapc[lear]                              清除普通及可视模式下的映射
-:mapc[lear]!                             清除插入及命令行模式下的映射
-:imapc[lear]                             清除插入模式下的映射
-:vmapc[lear]                             清除可视模式下的映射
-:omapc[lear]                             清除操作符等待模式下的映射
-:nmapc[lear]                             清除普通模式下的映射
-:cmapc[lear]                             清除命令行模式下的映射
-:mk[exrc][!] [file]                      将当前的键盘映射、缩写及设置写入文件 [file] (缺省: ".exrc"；使用 ! 覆盖文件)
-:mkv[imrc][!] [file]                     同 ":mkexrc"，但缺省为 ".vimrc"
-:mks[ession][!] [file]                   同 ":mkvimrc"，但同时存储当前文件、窗口等信 息，使得用户将来可以继续当前对话
 ------------------------------------------------------------------------------
 缩写
 
 :ab[breviate] {lhs} {rhs}                为 {rhs} 加入缩写 {lhs}
-:ab[breviate] {lhs}                      显示以 {lhs} 开始的缩写
 :ab[breviate]                            显示所有缩写
-:una[bbreviate] {lhs}                    删除 {lhs} 对应的缩写
 :norea[bbrev] [lhs] [rhs]                同 ":ab"，但不对 [rhs] 重映射
 :iab/:iunab/:inoreab                     同 ":ab"，但仅适用于插入模式
 :cab/:cunab/:cnoreab                     同 ":ab"，但仅适用于命令行模式
-:abc[lear]                               清除所有缩写
-:cabc[lear]                              清除所有命令行模式缩写
-:iabc[lear]                              清除所有插入模式缩写
 --------------------------------------------------------------
 选项
 
-:se[t]                                   显示所有被改动的选项
-:se[t] all                               显示所有非 termcap 选项
-:se[t] termcap                           显示所有 termcap 选项
-:se[t] {option}                          置位布尔选项 (开启)
-显示字符串或数值选项
+:se[t] {option}                          置位布尔选项 (开启) 显示字符串或数值选项
 :se[t] no{option}                        复位布尔选项 (关闭)
-:se[t] inv{option}                       逆转布尔选项的值
 :se[t] {option}={value}                  设置字符串/数值选项的值为 {value}
 :se[t] {option}+={value}                 将 {value} 附加到字符串选项里，将 {value} 加到数值选项上
 :se[t] {option}-={value}                 从 {value} 从字符串选项里删除，从 数值选项里减去 {value}
 :se[t] {option}?                         显示 {option} 的值
-:se[t] {option}&                         重置 {option} 为其缺省值
 
-:setl[ocal]                              同 ":set"，但对局部选项只设定局部值
-:setg[lobal]                             同 ":set"，但对局部选项设定其全局值
-
-:fix[del]                                根据 't_kb' 的值设置 't_kD'
-:opt[ions]                               打开一个新窗口，用来参看并设置选项， 选项们以功能分组，有单行的解释， 并有指向帮助的链接
+:setlocal                              同 ":set"，但对局部选项只设定局部值
+:setglobal                             同 ":set"，但对局部选项设定其全局值

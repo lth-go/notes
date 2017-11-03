@@ -1,6 +1,6 @@
 #Docker
 
-##Docker Registry
+##Docker Registry v1
 
 **namespace** 为 library
 

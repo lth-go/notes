@@ -2,7 +2,7 @@
 
 ## 登录数据库
 
-`sql -U dbuser -d exampledb -h 127.0.0.1 -p 5432`
+`export PGPASSWORD='password';psql -U dbuser -d exampledb -h 127.0.0.1 -p 5432`
 
 ---
 
@@ -45,14 +45,40 @@
 * 导出数据
 `pg_dump -U postgres(用户名)  (-t 表名)  数据库名(缺省时同用户名)  > 路径/文件名.sql`
 
-
 * 导入数据
 `psql -d databaename(数据库名) -U username(用户名) -f  路径/文件名.sql `
 
+* 自增主键
+`SELECT setval('sample_id_seq',max(id)) from sample;`
+
 ### 基本的数据库操作
 
+#### 表操作
 * 创建新表
 `CREATE TABLE user_tbl(name VARCHAR(20), signup_date DATE);`
+
+* 删除表格
+`DROP TABLE IF EXISTS backup_tbl;`
+
+* 添加栏位
+`ALTER TABLE user_tbl ADD email VARCHAR(40);`
+
+* 删除栏位
+`ALTER TABLE user_tbl DROP COLUMN email;`
+
+* 设置约束
+`ALTER TABLE user_tbl ALTER COLUMN signup_date SET NOT NULL;`
+
+* 更新字段类型
+`ALTER TABLE user_tbl ALTER COLUMN email TYPE VARCHAR(50);`
+
+* 更名栏位
+`ALTER TABLE user_tbl RENAME COLUMN signup_date TO signup;`
+
+* 表格更名
+`ALTER TABLE user_tbl RENAME TO backup_tbl;`
+
+### 数据操作
 
 * 插入数据
 `INSERT INTO user_tbl(name, signup_date) VALUES('张三', '2013-12-22');`
@@ -65,23 +91,5 @@
 
 * 删除记录
 `DELETE FROM user_tbl WHERE name = '李四' ;`
-
-* 添加栏位
-`ALTER TABLE user_tbl ADD email VARCHAR(40);`
-
-* 更新结构
-`ALTER TABLE user_tbl ALTER COLUMN signup_date SET NOT NULL;`
-
-* 更名栏位
-`ALTER TABLE user_tbl RENAME COLUMN signup_date TO signup;`
-
-* 删除栏位
-`ALTER TABLE user_tbl DROP COLUMN email;`
-
-* 表格更名
-`ALTER TABLE user_tbl RENAME TO backup_tbl;`
-
-* 删除表格
-`DROP TABLE IF EXISTS backup_tbl;`
 
 ---

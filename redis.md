@@ -1,303 +1,303 @@
-#Redis
+# Redis
 
-##Key:
+## Key:
 
-###SELECY db
+###  SELECY db
 选择数掘库
 
-###DEL key
+###  DEL key
 该命令用于在 key 存在时删除 key。
 
-###EXISTS key
+###  EXISTS key
 检查给定 key 是否存在。
 
-###TYPE key
+###  TYPE key
 返回 key 所储存的值的类型。
 
-###RANDOMKEY
+### RANDOMKEY
 从当前数据库中随机返回一个 key 。
 
-###DUMP key
+### DUMP key
 序列化给定 key ，并返回被序列化的值。
 
-###RENAME key newkey
+### RENAME key newkey
 修改 key 的名称
-###RENAMENX key newkey
+### RENAMENX key newkey
 仅当 newkey 不存在时，将 key 改名为 newkey 。
 
-###KEYS pattern
+### KEYS pattern
 查找所有符合给定模式(pattern)的 key 。
 
-###MOVE key db
+### MOVE key db
 将当前数据库的 key 移动到给定的数据库 db 当中。
 
-###EXPIRE key seconds
+### EXPIRE key seconds
 为给定 key 设置过期时间。
-###EXPIREAT key timestamp
+### EXPIREAT key timestamp
 为给定 key 设置过期时间。参数为UNIX 时间戳。
-###PEXPIRE key milliseconds
+### PEXPIRE key milliseconds
 设置 key 的过期时间以毫秒计。
-###PEXPIREAT key milliseconds-timestamp
+### PEXPIREAT key milliseconds-timestamp
 设置 key 过期时间的时间戳(unix timestamp)。
-###TTL key
+### TTL key
 以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。
-###PTTL key
+### PTTL key
 以毫秒为单位返回 key 的剩余的过期时间。
-###PERSIST key
+### PERSIST key
 移除 key 的过期时间，key 将持久保持。
 
 ***
 
-##String
+## String
 
-###SET key value
+### SET key value
 设置指定 key 的值
-###SETNX key value
+### SETNX key value
 只有在 key 不存在时设置 key 的值。
-###GETSET key value
+### GETSET key value
 将给定 key 的值设为 value ，并返回 key 的旧值(old value)。
-###MSET key value [key value ...]
+### MSET key value [key value ...]
 同时设置一个或多个 key-value 对。
-###MSETNX key value [key value ...]
+### MSETNX key value [key value ...]
 同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。
 
-###GET key
+### GET key
 获取指定 key 的值。
-###MGET key1 [key2..]
+### MGET key1 [key2..]
 获取所有(一个或多个)给定 key 的值。
-###GETRANGE key start end
+### GETRANGE key start end
 返回 key 中字符串值的子字符
-###STRLEN key
+### STRLEN key
 返回 key 所储存的字符串值的长度。
 
-###GETBIT key offset
+### GETBIT key offset
 对 key 所储存的字符串值，获取指定偏移量上的位(bit)。
-###SETBIT key offset value
+### SETBIT key offset value
 对 key 所储存的字符串值，设置或清除指定偏移量上的位(bit)。
 
-###SETEX key seconds value
+### SETEX key seconds value
 将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以秒为单位)。
-###PSETEX key milliseconds value
+### PSETEX key milliseconds value
 将值 value 关联到 key ，并将 key 的过期时间设为 seconds (以毫秒为单位)。
 
-###INCR key
+### INCR key
 将 key 中储存的数字值增一。
-###INCRBY key increment
+### INCRBY key increment
 将 key 所储存的值加上给定的增量值（increment）。
-###INCRBYFLOAT key increment
+### INCRBYFLOAT key increment
 将 key 所储存的值加上给定的浮点增量值（increment）。
-###DECR key
+### DECR key
 将 key 中储存的数字值减一。
-###DECRBY key decrement
+### DECRBY key decrement
 key 所储存的值减去给定的减量值（decrement） 。
 
-###APPEND key value
+### APPEND key value
 如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
-###SETRANGE key offset value
+### SETRANGE key offset value
 用 value 参数覆写给定 key 所储存的字符串值，从偏移量 offset 开始。
 
 ***
 
-##Hash
+## Hash
 
-###HSET key field value
+### HSET key field value
 将哈希表 key 中的字段 field 的值设为 value 。
-###HMSET key field1 value1 [field2 value2 ]
+### HMSET key field1 value1 [field2 value2 ]
 同时将多个 field-value (域-值)对设置到哈希表 key 中。
-###HSETNX key field value
+### HSETNX key field value
 只有在字段 field 不存在时，设置哈希表字段的值。
 
-###HKEYS key
+### HKEYS key
 获取所有哈希表中的字段
-###HVALS key
+### HVALS key
 获取哈希表中所有值
-###HGET key field
+### HGET key field
 获取存储在哈希表中指定字段的值。
-###HMGET key field1 [field2]
+### HMGET key field1 [field2]
 获取所有给定字段的值
-###HGETALL key
+### HGETALL key
 获取在哈希表中指定 key 的所有字段和值
-###HSCAN key cursor [MATCH pattern] [COUNT count]
+### HSCAN key cursor [MATCH pattern] [COUNT count]
 迭代哈希表中的键值对。
-###HEXISTS key field
+### HEXISTS key field
 查看哈希表 key 中，指定的字段是否存在。
-###HLEN key
+### HLEN key
 获取哈希表中字段的数量
 
-###HDEL key field2 [field2]
+### HDEL key field2 [field2]
 删除一个或多个哈希表字段
 
-###HINCRBY key field increment
+### HINCRBY key field increment
 为哈希表 key 中的指定字段的整数值加上增量 increment 。
-###HINCRBYFLOAT key field increment
+### HINCRBYFLOAT key field increment
 为哈希表 key 中的指定字段的浮点数值加上增量 increment 。
 
 ***
 
-##List
+## List
 
-###RPUSH key value1 [value2]
+### RPUSH key value1 [value2]
 在列表中添加一个或多个值
-###RPUSHX key value
+### RPUSHX key value
 为已存在的列表添加值
-###LPUSH key value1 [value2]
+### LPUSH key value1 [value2]
 将一个或多个值插入到列表头部
-###LPUSHX key value
+### LPUSHX key value
 将一个或多个值插入到已存在的列表头部
-###LINSERT key BEFORE|AFTER pivot value
+### LINSERT key BEFORE|AFTER pivot value
 在列表的元素前或者后插入元素
-###LSET key index value
+### LSET key index value
 通过索引设置列表元素的值
 
-###LLEN key
+### LLEN key
 获取列表长度
-###LINDEX key index
+### LINDEX key index
 通过索引获取列表中的元素
-###LRANGE key start stop
+### LRANGE key start stop
 获取列表指定范围内的元素
 
-###LPOP key
+### LPOP key
 移出并获取列表的第一个元素
-###RPOP key
+### RPOP key
 移除并获取列表最后一个元素
-###BLPOP key1 [key2 ] timeout
+### BLPOP key1 [key2 ] timeout
 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
-###BRPOP key1 [key2 ] timeout
+### BRPOP key1 [key2 ] timeout
 移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
-###BRPOPLPUSH source destination timeout
+### BRPOPLPUSH source destination timeout
 从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
-###RPOPLPUSH source destination
+### RPOPLPUSH source destination
 移除列表的最后一个元素，并将该元素添加到另一个列表并返回
-###LTRIM key start stop
+### LTRIM key start stop
 对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。
-###LREM key count value
+### LREM key count value
 移除相应数量的列表元素
 
 ***
 
-###Set
+## Set
 
-###SADD key member1 [member2]
+### SADD key member1 [member2]
 向集合添加一个或多个成员
 
-###SMEMBERS key
+### SMEMBERS key
 返回集合中的所有成员
-###SRANDMEMBER key [count]
+### SRANDMEMBER key [count]
 返回集合中一个或多个随机数
-###SCARD key
+### SCARD key
 获取集合的成员数
-###SISMEMBER key member
+### SISMEMBER key member
 判断 member 元素是否是集合 key 的成员
-###SSCAN key cursor [MATCH pattern] [COUNT count]
+### SSCAN key cursor [MATCH pattern] [COUNT count]
 迭代集合中的元素
 
-###SMOVE source destination member
+### SMOVE source destination member
 将 member 元素从 source 集合移动到 destination 集合
 
-###SPOP key
+### SPOP key
 移除并返回集合中的一个随机元素
-###SREM key member1 [member2]
+### SREM key member1 [member2]
 移除集合中一个或多个成员
 
-###SDIFF key1 [key2]
+### SDIFF key1 [key2]
 返回给定所有集合的差集
-###SDIFFSTORE destination key1 [key2]
+### SDIFFSTORE destination key1 [key2]
 返回给定所有集合的差集并存储在 destination 中
-###SINTER key1 [key2]
+### SINTER key1 [key2]
 返回给定所有集合的交集
-###SINTERSTORE destination key1 [key2]
+### SINTERSTORE destination key1 [key2]
 返回给定所有集合的交集并存储在 destination 中
-###SUNION key1 [key2]
+### SUNION key1 [key2]
 返回所有给定集合的并集
-###SUNIONSTORE destination key1 [key2]
+### SUNIONSTORE destination key1 [key2]
 所有给定集合的并集存储在 destination 集合中
 
 ***
 
-##Sorted Set
+## Sorted Set
 
-###ZADD key score1 member1 [score2 member2]
+### ZADD key score1 member1 [score2 member2]
 向有序集合添加一个或多个成员，或者更新已存在成员的分数
 
-###ZREVRANK key member
+### ZREVRANK key member
 返回有序集合中指定成员的排名
-###ZSCORE key member
+### ZSCORE key member
 返回有序集中，成员的分数值
-###ZRANK key member
+### ZRANK key member
 返回有序集合中指定成员的索引
 
-###ZCARD key
+### ZCARD key
 获取有序集合的成员数
-###ZCOUNT key min max
+### ZCOUNT key min max
 计算在有序集合中指定区间分数的成员数
-###ZSCAN key cursor [MATCH pattern] [COUNT count]
+### ZSCAN key cursor [MATCH pattern] [COUNT count]
 迭代有序集合中的元素（包括元素成员和元素分值）
-###ZLEXCOUNT key min max
+### ZLEXCOUNT key min max
 在有序集合中计算指定字典区间内成员数量
 
-###ZRANGE key start stop [WITHSCORES]
+### ZRANGE key start stop [WITHSCORES]
 通过索引区间返回有序集合成指定区间内的成员
-###ZRANGEBYLEX key min max [LIMIT offset count]
+### ZRANGEBYLEX key min max [LIMIT offset count]
 通过字典区间返回有序集合的成员
-###ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT]
+### ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT]
 通过分数返回有序集合指定区间内的成员
 
-###ZREVRANGE key start stop [WITHSCORES]
+### ZREVRANGE key start stop [WITHSCORES]
 返回有序集中指定区间内的成员，通过索引，分数从高到低
-###ZREVRANGEBYSCORE key max min [WITHSCORES]
+### ZREVRANGEBYSCORE key max min [WITHSCORES]
 返回有序集中指定分数区间内的成员，分数从高到低排序
 
-###ZINCRBY key increment member
+### ZINCRBY key increment member
 有序集合中对指定成员的分数加上增量 increment
 
-###ZINTERSTORE destination numkeys key [key ...]
+### ZINTERSTORE destination numkeys key [key ...]
 计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中
-###ZUNIONSTORE destination numkeys key [key ...]
+### ZUNIONSTORE destination numkeys key [key ...]
 计算给定的一个或多个有序集的并集，并存储在新的 key 中
 
-###ZREM key member [member ...]
+### ZREM key member [member ...]
 移除有序集合中的一个或多个成员
-###ZREMRANGEBYLEX key min max
+### ZREMRANGEBYLEX key min max
 移除有序集合中给定的字典区间的所有成员
-###ZREMRANGEBYRANK key start stop
+### ZREMRANGEBYRANK key start stop
 移除有序集合中给定的排名区间的所有成员
-###ZREMRANGEBYSCORE key min max
+### ZREMRANGEBYSCORE key min max
 移除有序集合中给定的分数区间的所有成员
 
 ***
 
-##Pub/Sub
+## Pub/Sub
 
-###SUBSCRIBE channel [channel ...]
+### SUBSCRIBE channel [channel ...]
 订阅给定的一个或多个频道的信息。
-###PSUBSCRIBE pattern [pattern ...]
+### PSUBSCRIBE pattern [pattern ...]
 订阅一个或多个符合给定模式的频道。
 
-###UNSUBSCRIBE [channel [channel ...]]
+### UNSUBSCRIBE [channel [channel ...]]
 指退订给定的频道。
-###PUNSUBSCRIBE [pattern [pattern ...]]
+### PUNSUBSCRIBE [pattern [pattern ...]]
 退订所有给定模式的频道。
 
-###PUBLISH channel message
+### PUBLISH channel message
 将信息发送到指定的频道。
 
-###PUBSUB subcommand [argument [argument ...]]
+### PUBSUB subcommand [argument [argument ...]]
 查看订阅与发布系统状态。
 
 ***
 
 ##Transaction
 
-###MULTI
+### MULTI
 标记一个事务块的开始。
-###EXEC
+### EXEC
 执行所有事务块内的命令。
-###DISCARD
+### DISCARD
 取消事务，放弃执行事务块内的所有命令。
 
-###UNWATCH
+### UNWATCH
 取消 WATCH 命令对所有 key 的监视。
-###WATCH key [key ...]
+### WATCH key [key ...]
 监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。
 
 ***
