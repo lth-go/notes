@@ -300,8 +300,7 @@ echo "两数之和为 : $val"
 **if 语句语法格式**
 
 ```
-if condition
-then
+if condition; then
     command1
     command2
     ...
@@ -318,8 +317,7 @@ if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
 **if else 语法格式**
 
 ```
-if condition
-then
+if condition; then
     command1
     command2
     ...
@@ -332,11 +330,9 @@ fi
 **if else-if else 语法格式**
 
 ```
-if condition1
-then
+if condition1; then
     command1
-elif condition2
-then
+elif condition2; then
     command2
 else
     commandN
@@ -348,8 +344,7 @@ fi
 **for循环一般格式为**
 
 ```
-for var in item1 item2 ... itemN
-do
+for var in item1 item2 ... itemN; do
     command1
     command2
     ...
@@ -370,8 +365,7 @@ in列表是可选的，如果不用它，for循环使用命令行的位置参数
 **顺序输出当前列表中的数字**
 
 ```
-for loop in 1 2 3 4 5
-do
+for loop in 1 2 3 4 5; do
     echo "The value is: $loop"
 done
 ```
@@ -379,8 +373,7 @@ done
 **顺序输出字符串中的字符**
 
 ```
-for str in 'This is a string'
-do
+for str in 'This is a string'; do
     echo $str
 done
 ```
@@ -390,8 +383,7 @@ done
 while循环用于不断执行一系列命令，也用于从输入文件中读取数据；命令通常为测试条件
 
 ```
-while condition
-do
+while condition; do
     command
 done
 ```
@@ -399,8 +391,7 @@ done
 **while循环可用于读取键盘信息**
 
 ```
-while read FILM
-do
+while read FILM; do
     echo "是的！$FILM 是一部好电影"
 done
 ```
@@ -410,8 +401,7 @@ done
 **无限循环语法格式**
 
 ```
-while :
-do
+while :; do
     command
 done
 ```
@@ -419,8 +409,7 @@ done
 或者
 
 ```
-while true
-do
+while true; do
     command
 done
 ```
@@ -438,8 +427,7 @@ until循环执行一系列命令直至条件为真时停止。
 **until 语法格式**
 
 ```
-until condition
-do
+until condition; do
     command
 done
 ```
