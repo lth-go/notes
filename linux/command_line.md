@@ -119,6 +119,9 @@ tcp抓包
 ### nohup
 将程序以忽略挂起信号的方式运行起来
 
+### disown
+从jobs中移除
+
 ## 用户和工作组管理
 
 ### su
@@ -474,6 +477,9 @@ OpenSSH SSH 客户端
 建立链接并返回两个数据流
 
 ## 网络配置
+
+### nmcli
+NetworkManager客户端
 
 ### ifconfig / ip
 配置和显示系统网卡的网络参数
