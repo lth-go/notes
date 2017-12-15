@@ -1,5 +1,0 @@
-copy.copy(x)
-    浅拷贝
-
-copy.deepcopy(x)
-    深拷贝
