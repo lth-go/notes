@@ -1,0 +1,10 @@
+collections.Counter
+    统计字符出现次数
+collections.deque
+    高效插入和删除的双向链表
+collections.defaultdict
+    带有默认返回值的字典
+collections.namedtuple
+    带有命名的元组
+collections.OrderedDict
+    有序字典

@@ -1,0 +1,93 @@
+date:
+    属性: year、month和day
+
+
+    实例方法:
+
+    today()
+        返回一个表示当前本地日期的date对象；  
+
+    fromtimestamp(timestamp)：
+        根据给定的时间戮，返回一个date对象； 
+
+    replace(year, month, day)：
+        生成一个新的日期对象
+    timetuple()：
+        返回日期对应的time.struct_time对象；
+
+    weekday()：
+        返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推；
+    isoweekday()：
+        返回weekday，如果是星期一，返回1；如果是星期2，返回2，以此类推；
+    isocalendar()：
+        返回格式如(year，month，day)的元组；
+
+    isoformat()：
+        返回格式如'YYYY-MM-DD'的字符串；
+
+    strftime(fmt)：
+        自定义格式化字符串。
+
+
+datetime:
+    属性：year、month、day、hour、minute、second、 microsecond和tzinfo。
+
+    实例方法:
+
+    today()：
+        返回一个表示当前本地时间的datetime对象；
+    now([tz])：
+        返回一个表示当前本地时间的datetime对象
+    utcnow()：
+        返回一个当前utc时间的datetime对象；
+
+    fromtimestamp(timestamp[, tz])：
+        根据时间戮创建一个datetime对象
+    utcfromtimestamp(timestamp)：
+        根据时间戮创建一个datetime对象；
+
+    combine(date, time)：
+        根据date和time，创建一个datetime对象；
+
+    strptime(date_string, format)：
+        将格式字符串转换为datetime对象；
+
+    date()：
+        获取date对象；
+    time()：
+        获取time对象；
+    replace([year[, month[, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]]]]])：
+        生成一个新的日期对象
+    timetuple() 
+        返回日期对应的time.struct_time对象；
+    utctimetuple()
+        返回日期对应的time.struct_time对象；
+    weekday() 
+        返回一个整数，表示星期几
+    isoformat([sep]) 
+        返回格式如'YYYY-MM-DDTHH:MM:SS'的字符串
+    strftime(format) 
+        自定义格式化字符串。
+
+
+time:
+    属性: hour、minute、second、microsecond和 tzinfo
+
+    实例方法:
+
+    replace([hour[, minute[, second[, microsecond[, tzinfo]]]]])：
+        创建一个新的时间对象
+    isoformat()：
+        返回型如"HH:MM:SS"格式的字符串表示；
+    strftime(fmt)：
+        返回自定义格式化字符串
+
+
+timedelta:
+    timedelta([days[, seconds[, microseconds[, milliseconds[, minutes[, hours[, weeks]]]]]]])
+    两个date、time或者datetime实例之间的时间差值，精度为微秒。
+
+    实例方法:
+
+    total_seconds()
+        返回时间差中包含的总的秒数。

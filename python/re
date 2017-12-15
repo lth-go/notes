@@ -1,0 +1,70 @@
+flags定义：
+    re.I：忽略大小写
+    re.L：表示特殊字符集 \w, \W, \b, \B, \s, \S 依赖于当前环境
+    re.M：多行模式
+    re.S：’ . ’并且包括换行符在内的任意字符（注意：’ . ’不包括换行符）
+    re.U： 表示特殊字符集 \w, \W, \b, \B, \d, \D, \s, \S 依赖于 Unicode 字符属性数据库
+
+compile:
+    compile(pattern, flags=0):
+    RegexObject
+    把正则表达式语法转化成正则表达式对象
+
+match:
+    match(pattern, string, flags=0)
+    MatchObject or None
+    只在字符串开始处匹配正则表达式
+
+search:
+    search(pattern, string, flags=0)
+    MatchObject or None
+    在字符串中查找匹配正则表达式模式的位置，返回 MatchObject 的实例，如果没有找到匹配的位置，则返回 None。
+
+sub:
+    sub(pattern, repl, string, count=0, flags=0)
+    string
+    在字符串 string 中找到匹配正则表达式 pattern 的所有子串，用另一个字符串 repl 进行替换
+subn:
+    subn(pattern, repl, string, count=0, flags=0)
+    (string, int)
+    该函数的功能和 sub() 相同，但它还返回新的字符串以及替换的次数
+
+split:
+    split(pattern, string, maxsplit=0, flags=0)
+    []
+    正则匹配来切割字符串。
+
+findall:
+    findall(pattern, string, flags=0)
+    []
+    在字符串中找到正则表达式所匹配的所有子串，并组成一个列表返回
+
+finditer:
+    iter
+    finditer(pattern, string, flags=0)
+    和findall 类似，在字符串中找到正则表达式所匹配的所有子串，并组成一个迭代器返回
+
+==========
+
+RegexObject:
+    
+	search(string[, pos[, endpos]])
+
+	match(string[, pos[, endpos]])
+
+	split(string, maxsplit=0)
+
+	findall(string[, pos[, endpos]])
+
+	finditer(string[, pos[, endpos]])
+
+	sub(repl, string, count=0)
+
+	subn(repl, string, count=0)
+
+MatchObject:
+	group([group1, ...])
+    返回Match对象的一个或多个子组
+
+	groups([default])
+    返回包含所有匹配到的子组的元组， 从1到模式中的所有组。
