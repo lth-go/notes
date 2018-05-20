@@ -394,6 +394,9 @@ tcp抓包
 ### convmv
 转换文件夹的编码方式
 
+### enca
+更好的编码转换
+
 ### dos2unix
 将DOS格式文本文件转换成Unix格式
 ### unix2dos
