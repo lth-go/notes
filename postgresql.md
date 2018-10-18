@@ -61,7 +61,7 @@
 `DROP TABLE IF EXISTS backup_tbl;`
 
 * 添加栏位
-`ALTER TABLE user_tbl ADD email VARCHAR(40);`
+`ALTER TABLE user_tbl ADD email VARCHAR(40) NOT NULL DEFAULT 'foo';`
 
 * 删除栏位
 `ALTER TABLE user_tbl DROP COLUMN email;`
