@@ -1,6 +1,6 @@
 # Git
 
-##专用名词
+## 专用名词
 
 * Workspace：工作区
 * Index / Stage：暂存区
@@ -9,20 +9,7 @@
 
 ---
 
-##新建代码库
-
-* 在当前目录新建一个Git代码库
-`$ git init`
-
-* 新建一个目录，将其初始化为Git代码库
-`$ git init [project-name]`
-
-* 下载一个项目和它的整个代码历史
-`$ git clone [url]`
-
----
-
-##配置
+## 配置
 
 Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。
 
@@ -35,13 +22,20 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 
 ---
 
-##增加/删除文件
+## 初始化仓库
+
+* 在当前目录新建一个Git代码库
+`$ git init`
+
+* 下载一个项目和它的整个代码历史
+`$ git clone <url>`
+
+---
+
+## 增加/删除文件
 
 * 添加指定路径下的内容到暂存区
-`$ git add [path]`
-
-* 删除工作区文件，并且将这次删除放入暂存区
-`$ git rm [path]`
+`$ git add <path>`
 
 * 停止追踪指定文件，但该文件会保留在工作区
 `$ git rm --cached [file]`
@@ -51,91 +45,56 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 
 ---
 
-##代码提交
+## 代码提交
 
 * 提交暂存区到仓库区
 `$ git commit -m [message]`
 
-* 提交暂存区的指定文件到仓库区
-`$ git commit [file1] [file2] ... -m [message]`
-
-* 提交工作区自上次commit之后的变化，直接到仓库区
-`$ git commit -a`
-
-* 提交时显示所有diff信息
-`$ git commit -v`
-
 * 使用一次新的commit，替代上一次提交
-* 如果代码没有任何新变化，则用来改写上一次commit的提交信息
-`$ git commit --amend -m [message]`
-
-* 重做上一次commit，并包括指定文件的新变化
-`$ git commit --amend [file1] [file2] ...`
+`$ git commit --amend`
 
 ---
 
-##分支
+## 分支
 
-* 列出所有本地分支
-`$ git branch`
+* 列出所有分支, 远端-r, 所有-a
+`$ git branch [-r | -a]`
 
-* 列出所有远程分支
-`$ git branch -r`
-
-* 列出所有本地分支和远程分支
-`$ git branch -a`
-
-* 新建一个分支，但依然停留在当前分支
-`$ git branch [branch-name]`
-
-* 新建一个分支，指向指定commit
-`$ git branch [branch] [commit]`
+* 新建一个分支
+`$ git branch <分支名> [<起始点>]`
 
 * 新建一个分支，与指定的远程分支建立追踪关系
 `$ git branch --track [branch] [remote-branch]`
 
 * 建立追踪关系，在现有分支与指定的远程分支之间
-`$ git branch --set-upstream [branch] [remote-branch]`
+`$ git branch --set-upstream-to=<remote-branch> [branch]`
 
 * 删除分支
 `$ git branch -d [branch-name]`
 
 * 删除远程分支
-`$ git push origin --delete [branch-name]`
 `$ git branch -dr [remote/branch]`
 
 * 切换到指定分支，并更新工作区
-`$ git checkout [branch-name]`
-
-* 新建一个分支，并切换到该分支
-`$ git checkout -b [branch]`
-
-* 切换到上一个分支
-`$ git checkout -`
+`$ git checkout [-b] [branch-name]`
 
 * 合并指定分支到当前分支
 `$ git merge [branch]`
 
-* 选择一个commit，合并进当前分支
-`$ git cherry-pick [commit]`
-
 ---
 
-##查看信息
+## 查看信息
 
 * 显示有变更的文件
-`$ git status`
+`$ git status [--ignored]`
 
-###log
+### log
 
 * 显示当前分支的版本历史
 `$ git log`
 
 * 显示commit历史，以及每次commit发生变更的文件
 `$ git log --stat`
-
-* 搜索提交历史，根据关键词
-`$ git log -S [keyword]`
 
 * 显示某个文件的版本历史
 `$ git log -- [file]`
@@ -146,7 +105,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 * 显示过去5次提交
 `$ git log -5 `
 
-###diff
+### diff
 
 * 显示暂存区和工作区的差异
 `$ git diff`
@@ -157,13 +116,10 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 * 显示暂存区和上一个commit的差异
 `$ git diff --cached [file]`
 
-* 显示工作区与当前分支最新commit之间的差异
-`$ git diff HEAD`
-
 * 显示两次提交之间的差异
-`$ git diff [first-branch] [second-branch]`
+`$ git diff [first-branch] [second-branch] -- [file]`
 
-###show
+### show
 
 * 显示某次提交的元数据和内容变化
 `$ git show [commit]`
@@ -176,7 +132,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 
 ---
 
-##远程同步
+## 远程同步
 
 * 下载远程仓库的所有变动
 `$ git fetch [remote]`
@@ -187,33 +143,21 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 * 显示所有远程仓库
 `$ git remote -v`
 
-* 显示某个远程仓库的信息
-`$ git remote show [remote]`
-
 * 取回远程仓库的变化，并与本地分支合并
 `$ git pull [remote] [branch]`
 
 * 上传本地指定分支到远程仓库
-`$ git push [remote] [branch]`
-
-* 强行推送当前分支到远程仓库，即使有冲突
-`$ git push [remote] --force`
-
-* 推送所有分支到远程仓库
-`$ git push [remote] --all`
+`$ git push [--force] [remote] [branch]`
 
 ---
 
-##撤销
+## 撤销
 
 * 恢复暂存区的指定文件到工作区
 `$ git checkout [file]`
 
 * 恢复某个commit的指定文件到暂存区和工作区
 `$ git checkout [commit] [file]`
-
-* 恢复暂存区的所有文件到工作区
-`$ git checkout .`
 
 * 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
 `$ git reset [file]`
@@ -240,7 +184,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 
 ---
 
-##标签
+## 标签
 
 * 列出所有tag
 `$ git tag`
@@ -270,3 +214,17 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 `$ git checkout -b [branch] [tag]`
 
 ---
+
+# ManPage
+
+## git reset
+
++ `git reset [-q] [<tree-ish>] [--] <paths>...`
++ `git reset [<mode>] [<commit>]`
+
+## git checkout
+
++ `git checkout <branch>`
++ `git checkout -b|-B <new_branch> [<start point>]`
+
++ `git checkout [<tree-ish>] [--] <pathspec>...`
