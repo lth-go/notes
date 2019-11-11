@@ -73,7 +73,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 `$ git branch -d [branch-name]`
 
 * 删除远程分支
-`$ git branch -dr [remote/branch]`
+`$ git push [remote] --delete [branch]`
 
 * 切换到指定分支，并更新工作区
 `$ git checkout [-b] [branch-name]`
