@@ -1,31 +1,47 @@
-#Docker
+# Docker
 
-##Docker Registry v1
+## Docker Registry v2
+
+### List all repositories (effectively images)
+
+```
+curl -X GET /v2/_catalog
+> {"repositories":["redis","ubuntu"]}
+```
+
+### List all tags for a repository
+
+```
+curl -X GET /v2/{namespace}/repository/tags/list
+> {"name":"ubuntu","tags":["14.04"]}
+```
+
+## Docker Registry v1
 
 **namespace** 为 library
 
-###获取仓库中所有标签
+### 获取仓库中所有标签
 
 `GET /v1/repositories/(namespace)/(repository)/tags`
 
 例:
 `http docker.jcing.com/v1/repositories/library/mapboom_repo/tags`
 
-###获取指定标签的镜像ID
+### 获取指定标签的镜像ID
 
 `GET /v1/repositories/(namespace)/(repository)/tags/(tag*)`
 
 例:
 `http 'docker.jcing.com/v1/repositories/library/mapboom_repo/tags/1.0.0'`
 
-###删除指定标签的镜像
+### 删除指定标签的镜像
 
 `DELETE /v1/repositories/(namespace)/(repository)/tags/(tag*)`
 
 例:
 `http delete 'docker.jcing.com/v1/repositories/library/mapboom_repo/tags/1.0.0'`
 
-###上传镜像
+### 上传镜像
 
 `PUT /v1/repositories/reynholm/help-system-server/tags/latest`
 
@@ -36,7 +52,7 @@ repository – name for the repo
 tag – name of tag you want to add
 ```
 
-###删除镜像仓库
+### 删除镜像仓库
 
 `DELETE /v1/repositories/(namespace)/(repository)/`
 
