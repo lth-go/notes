@@ -118,3 +118,64 @@ page - 多少页
 `GET /v1/_ping`
 
 `http 'docker.jcing.com/v1/_ping'`
+
+# docker login
+```
+docker login -u yihe -p aGyHeJiKDot211O docker.jcing.com
+```
+
+# 清理空容器
+```
+docker rm $(docker ps -aq)
+docker rm $(docker ps -q -f status=exited)
+```
+
+# 清理none镜像
+```
+docker rmi $(docker images | grep '\<none\>' | awk '{print $3}')
+docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+```
+
+# 清理volumes
+```
+docker volume rm $(docker volume ls -q -f dangling=true)
+```
+
+# 重名镜像排序
+```
+docker images | awk '{print $1}' | sort | uniq -c | sort -k 1n
+```
+
+# 容器删不掉
+```
+find /proc/*/mounts | xargs grep 容器名
+```
+
+# 大清理
+
+```
+docker system prune
+```
+
+# 添加证书
+
+```
+registry_address=docker.jcing.com
+mkdir -p /etc/docker/certs.d/${registry_address}
+openssl s_client -showcerts -connect ${registry_address}:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/docker/certs.d/${registry_address}/ca.crt
+```
+
+# 国内镜像仓库
+
+```
+https://www.ilanni.com/?p=14534#%E5%9B%9B%E3%80%81quay.io%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F
+
+docker pull docker.mirrors.ustc.edu.cn/xxx/yyy:zz
+docker pull dockerhub.azk8s.cn/xxx/yyy:zz
+
+docker pull gcr.mirrors.ustc.edu.cn/xxx/yyy:zzz
+docker pull gcr.azk8s.cn/xxx/yyy:zzz
+
+docker pull quay.mirrors.ustc.edu.cn/xxx/yyy:zzz
+docker pull quay.azk8s.cn/xxx/yyy:zzz
+```
