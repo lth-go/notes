@@ -103,7 +103,7 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 `$ git log -p [file]`
 
 * 显示过去5次提交
-`$ git log -5 `
+`$ git log -5`
 
 ### diff
 
@@ -213,18 +213,31 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 * 新建一个分支，指向某个tag
 `$ git checkout -b [branch] [tag]`
 
+## rebase
+
+* 合并提交
+`git rebase -i HEAD~n`
+
 ---
 
-# ManPage
+## ManPage
 
-## git reset
+### git reset
 
-+ `git reset [-q] [<tree-ish>] [--] <paths>...`
-+ `git reset [<mode>] [<commit>]`
+`git reset [-q] [<tree-ish>] [--] <paths>...`
+`git reset [<mode>] [<commit>]`
 
 ## git checkout
 
-+ `git checkout <branch>`
-+ `git checkout -b|-B <new_branch> [<start point>]`
+`git checkout <branch>`
+`git checkout -b|-B <new_branch> [<start point>]`
 
-+ `git checkout [<tree-ish>] [--] <pathspec>...`
+`git checkout [<tree-ish>] [--] <pathspec>...`
+
+## 合并提交
+
+```sh
+message=`git log --format=%B origin..HEAD | sort | uniq | grep -v '^$'`
+git reset --soft origin
+git commit -m "$message"
+```
