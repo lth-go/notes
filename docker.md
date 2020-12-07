@@ -4,7 +4,7 @@
 
 ### docker.io镜像加速
 
-```
+```sh
 docker pull xxx:yyy
 docker pull docker.mirrors.ustc.edu.cn/library/xxx:yyy
 docker pull dockerhub.azk8s.cn/library/xxx:yyy
@@ -17,7 +17,7 @@ docker pull dockerhub.azk8s.cn/xxx/yyy:zz
 
 ### gcr.io镜像加速
 
-```
+```sh
 docker pull gcr.io/xxx/yyy:zzz
 docker pull gcr.mirrors.ustc.edu.cn/xxx/yyy:zzz
 docker pull gcr.mirrors.ustc.edu.cn/xxx/yyy:zzz
@@ -25,7 +25,7 @@ docker pull gcr.mirrors.ustc.edu.cn/xxx/yyy:zzz
 
 ### k8s.gcr.io镜像加速
 
-```
+```sh
 docker pull k8s.gcr.io/xxx:yyy
 docker pull gcr.io/google-containers/xxx:yyy
 docker pull gcr.mirrors.ustc.edu.cn/google-containers/xxx:yyy
@@ -37,7 +37,7 @@ docker pull gcr.azk8s.cn/google-containers/xxx:yyy
 
 ### quay.io镜像加速
 
-```
+```sh
 docker pull quay.io/xxx/yyy:zzz
 docker pull quay.azk8s.cn/xxx/yyy:zzz
 ```
@@ -98,7 +98,7 @@ tag – name of tag you want to add
 
 `DELETE /v1/repositories/(namespace)/(repository)/`
 
-###搜索
+### 搜索
 
 `GET /v1/search`
 
@@ -113,7 +113,7 @@ page - 多少页
 例:
 `http 'docker.jcing.com/v1/search?q=auth&n=1&page=5'`
 
-###状态检查
+### 状态检查
 
 `GET /v1/_ping`
 
@@ -163,19 +163,4 @@ docker system prune
 registry_address=docker.jcing.com
 mkdir -p /etc/docker/certs.d/${registry_address}
 openssl s_client -showcerts -connect ${registry_address}:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/docker/certs.d/${registry_address}/ca.crt
-```
-
-# 国内镜像仓库
-
-```
-https://www.ilanni.com/?p=14534#%E5%9B%9B%E3%80%81quay.io%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F
-
-docker pull docker.mirrors.ustc.edu.cn/xxx/yyy:zz
-docker pull dockerhub.azk8s.cn/xxx/yyy:zz
-
-docker pull gcr.mirrors.ustc.edu.cn/xxx/yyy:zzz
-docker pull gcr.azk8s.cn/xxx/yyy:zzz
-
-docker pull quay.mirrors.ustc.edu.cn/xxx/yyy:zzz
-docker pull quay.azk8s.cn/xxx/yyy:zzz
 ```
