@@ -226,3 +226,9 @@ message=`git log --format=%B origin..HEAD | sort | uniq | grep -v '^$'`
 git reset --soft origin
 git commit -m "$message"
 ```
+
+## Blame
+
+```sh
+git blame [rev] [-L <range>] [--] <file>
+```
